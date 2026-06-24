@@ -1,1 +1,3 @@
-# Strategic-Framing-in-the-emerging-EV-Industry
+# Strategic Framing in the Emerging EV Industry
+
+Public-facing research results display.

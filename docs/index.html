@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Strategic Framing in the Emerging EV Industry：BERTopic 研究結果展示。">
+    <title>Strategic Framing in the Emerging EV Industry | 研究結果</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="site-header__inner">
+        <a class="brand" href="#top">Strategic Framing <small>Research Results</small></a>
+        <nav class="site-nav" aria-label="頁面導覽">
+          <a href="#main-model">主模型</a>
+          <a href="#year-split">年份比較</a>
+          <a href="#validations">穩健性檢驗</a>
+        </nav>
+      </div>
+    </header>
+    <main id="top">
+      <div class="hero">
+        <p class="eyebrow">BERTopic Research Results</p>
+        <h1>新興電動車產業中的策略框架<span>Strategic Framing in the Emerging EV Industry</span></h1>
+        <p class="lede">本頁彙整以英文電動車產品影片逐字稿進行主題建模的核心結果，以及對資料處理、年份切分與資料篩選的穩健性檢驗。</p>
+        <div class="metrics" aria-label="研究結果摘要">
+          <div class="metric metric--teal"><strong>34</strong><span>主模型的有效主題數</span></div>
+          <div class="metric metric--teal"><strong>24.77%</strong><span>主模型的離群比例</span></div>
+          <div class="metric metric--blue"><strong>20 / 34</strong><span>LLM 命名穩定主題</span></div>
+          <div class="metric metric--orange"><strong>2008-2025</strong><span>分析資料的年份範圍</span></div>
+        </div>
+      </div>
+      <section id="main-model">
+        <h2>主模型與命名檢驗</h2>
+        <p class="section-copy">主模型以固定的降維與分群設定建立主題，再以相同的關鍵詞與代表文本重複進行 LLM 主題命名。穩定性檢驗評估名稱的一致性，不改變原始分群結果。</p>
+        <div class="table-wrap"><table><thead><tr><th>結果版本</th><th>有效主題</th><th>離群比例</th><th>穩定命名主題</th><th>平衡分數</th><th>重點</th></tr></thead><tbody>
+          <tr><td><strong>LLM 命名 30 次</strong></td><td>24</td><td>24.03%</td><td>20 / 24</td><td>0.682</td><td>短次數重複命名的檢驗版本。</td></tr>
+          <tr><td><strong>LLM 命名 50 次</strong></td><td>34</td><td>24.77%</td><td>20 / 34</td><td>0.775</td><td>主模型的完整命名穩定性檢驗。</td></tr>
+        </tbody></table></div>
+        <p class="note">命名一致性的判定採眾數名稱比例或與眾數名稱的詞彙重疊度；未達門檻的主題保留供人工解讀。</p>
+      </section>
+      <section id="year-split">
+        <h2>年份切分比較</h2>
+        <p class="section-copy">資料依 2020 年切分，以比較不同時期的 EV 產品溝通內容是否形成不同的主題結構。</p>
+        <div class="table-wrap"><table><thead><tr><th>資料期間</th><th>有效主題</th><th>離群比例</th><th>穩定命名主題</th><th>平衡分數</th></tr></thead><tbody>
+          <tr><td><strong>2008-2019</strong></td><td>16</td><td>25.93%</td><td>13 / 17</td><td>0.650</td></tr>
+          <tr><td><strong>2020-2025</strong></td><td>22</td><td>29.45%</td><td>17 / 22</td><td>0.814</td></tr>
+        </tbody></table></div>
+        <div class="callout"><strong>閱讀提醒：</strong>年份分組的資料量與主題數不同；比較時應同時觀察主題內容、集中程度與離群比例，而非以單一分數判定優劣。</div>
+      </section>
+      <section id="validations">
+        <h2>穩健性檢驗</h2>
+        <p class="section-copy">三類檢驗分別觀察品牌／車款處理方式、年份邊界，以及資料篩選條件是否大幅改變主題結構。</p>
+        <h3>品牌與車款處理</h3>
+        <div class="table-wrap"><table><thead><tr><th>處理方式</th><th>有效主題</th><th>離群比例</th><th>最大主題比例</th><th>平衡分數</th><th>LLM 命名</th></tr></thead><tbody>
+          <tr><td>移除品牌／車款名稱</td><td>14</td><td>30.27%</td><td>23.03%</td><td>0.647</td><td><span class="status status--none">未執行</span></td></tr>
+          <tr><td>替換為 Brand／Model</td><td>29</td><td>32.02%</td><td>8.07%</td><td>0.838</td><td><span class="status status--none">未執行</span></td></tr>
+        </tbody></table></div>
+        <h3 style="margin-top: 34px;">不同年份邊界</h3>
+        <div class="table-wrap"><table><thead><tr><th>切分點</th><th>前段：主題／離群</th><th>後段：主題／離群</th><th>比較焦點</th></tr></thead><tbody>
+          <tr><td>2018</td><td>5 / 5.59%</td><td>20 / 28.53%</td><td>早期資料高度集中；後段出現更多可區分主題。</td></tr>
+          <tr><td>2019</td><td>9 / 31.50%</td><td>31 / 29.88%</td><td>2019 後保留更多細分主題。</td></tr>
+          <tr><td>2021</td><td>19 / 28.99%</td><td>17 / 26.79%</td><td>兩段均可形成多個主題，結構較為接近。</td></tr>
+        </tbody></table></div>
+        <h3 style="margin-top: 34px;">資料篩選</h3>
+        <div class="table-wrap"><table><thead><tr><th>篩選方式</th><th>有效主題</th><th>離群比例</th><th>最大主題比例</th><th>平衡分數</th><th>LLM 命名狀態</th></tr></thead><tbody>
+          <tr><td>僅保留 1-35 分鐘影片</td><td>23</td><td>26.54%</td><td>11.86%</td><td>未計算</td><td><span class="status status--none">設定停用</span></td></tr>
+          <tr><td>去除頭尾各 5 家廠商</td><td>7</td><td>1.71%</td><td>85.32%</td><td>0.409</td><td><span class="status status--none">未執行</span></td></tr>
+        </tbody></table></div>
+      </section>
+      <section>
+        <h2>結果解讀</h2>
+        <p class="section-copy">研究結果顯示，資料處理與切分方式會影響可辨識的主題數、離群比例與主題集中程度。主模型的 LLM 重複命名結果可協助辨識較具一致性的主題名稱；名稱一致性較低的主題則應結合代表文本進行人工判讀。</p>
+        <div class="callout"><strong>指標說明：</strong>有效主題數代表排除離群資料後的群集數；離群比例代表未被歸入有效主題的文本比例；最大主題比例反映主題是否過度集中；平衡分數綜合離群比例、主題數與集中程度，僅用於同一研究設計下的比較。</div>
+      </section>
+    </main>
+    <footer class="site-footer">Research results display</footer>
+  </body>
+</html>
